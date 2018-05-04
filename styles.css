@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+a {
+  /* リンクの下線を非表示にする */
+  text-decoration: none;
+}
+table {
+  /* marginにautoを加える事で中央揃えになる */
+  margin: 15px auto;
+  border: 1px solid #ddd; /* 枠 */
+  border-collapse: collapse; /* 隣接するセルのボーダーを重ねて表示 */
+}
+th {
+  background: #eee; /* 見出しセルをグレー表示 */
+}
+th, td {
+  padding: 7px;
+  text-align: center;
+}
+
+.youbi_0 {
+  color: red;
+}
+.youbi_6{
+  color: blue;
+}
+.today {
+  font-weight: bold;
+}
+.gray {
+  color: #ededed;
+}
