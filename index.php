@@ -2,11 +2,12 @@
 $body = '';
 #DatePeriod：特定の期間の日付オブジェクトを作成
 $period = new DatePeriod(
+  #その月の月始まりだよと宣言
   new DateTime('first day of this month'),
-  #DateIntervalでどのくらいの間隔を開けて日付オブジェクトを作成するか決める
-  #今回は1日毎
+  #1日毎の日付データを取得
   new DateInterval('P1D'),
-  new DateTime('first day of next month') #月末までの表示にしてくれる
+  #次の月までの日付を取得(今月末まで)
+  new DateTime('first day of next month')
 );
 foreach ($period as $day) {
   /*wで日曜日が0月曜日が１となるので、それを７で割った時の余りが０のときに行変えをしていくs*/
@@ -15,6 +16,14 @@ foreach ($period as $day) {
   $day->format('d'));
 }
 
+//翌月の１日の曜日オブジェクトを取得
+$head ='';
+$firstDayOfNextMonth = new DateTime('first day of next month');
+while ($firstDayOfNextMonth->format('w') > 0) {
+  $head .= sprintf('<td class="gray">%d</td>',
+    $firstDayOfNextMonth->format('d'));
+  $firstDayOfNextMonth->add(new DateInterval('P1D'));
+}
 
  ?>
 
@@ -45,7 +54,7 @@ foreach ($period as $day) {
              <td>Sat</td>
            </tr>
            <tr>
-             <?php echo $body; ?>
+             <?php echo $body . $head; ?>
              <!-- <td class="youbi_0">1</td>
              <td class="youbi_1">2</td>
              <td class="youbi_2">3</td>
